@@ -20,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -125,20 +126,43 @@ fun ContactInformation() {
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.Start,
     ) {
-        ContactRow(R.drawable.phone, "368-996-3388")
-        ContactRow(R.drawable.office, "228 Herron News")
-        ContactRow(R.drawable.email, "k.ma787@mybvc.ca")
+        ContactRow(
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.phone),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            },
+            text = "368-996-3388"
+        )
+        ContactRow(
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.office),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            },
+            text = "228 Herron News"
+        )
+        ContactRow(
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.email),
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            },
+            text = "k.ma787@mybvc.ca"
+        )
     }
 }
 
 @Composable
-fun ContactRow(iconId: Int, text: String) {
+fun ContactRow(leadingIcon: @Composable () -> Unit, text: String){
     Row(verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(id = iconId),
-            contentDescription = null,
-            modifier = Modifier.size(24.dp)
-        )
+        leadingIcon()
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = text,
